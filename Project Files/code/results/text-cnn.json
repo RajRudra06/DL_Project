@@ -1,0 +1,23 @@
+{
+  "model": "Text-CNN",
+  "owner": "Ishan Satyanand Thakur",
+  "split": "test",
+  "n_eval": 6074,
+  "metrics": {
+    "accuracy": 0.9293710898913401,
+    "precision": 0.95249653259362,
+    "recall": 0.9039157617637381,
+    "macro_f1": 0.9293274126389062,
+    "roc_auc": 0.9810703577273587,
+    "confusion": {
+      "tn": 2898,
+      "fp": 137,
+      "fn": 292,
+      "tp": 2747
+    }
+  },
+  "n_params": 2120902,
+  "train_seconds": 135.51669911499994,
+  "latency_ms_per_review": 0.0847859427075548,
+  "notes": "epochs=5, device=cuda, embed_dim=100, num_filters=100, max_len=128"
+}
