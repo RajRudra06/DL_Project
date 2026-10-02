@@ -1,0 +1,49 @@
+{
+  "model": "DistilBERT",
+  "owner": "Rudra Rajpurohit",
+  "split": "test",
+  "n_eval": 6074,
+  "metrics": {
+    "accuracy": 0.970859400724399,
+    "precision": 0.9519898926089703,
+    "recall": 0.991773609740046,
+    "macro_f1": 0.9708458396670058,
+    "roc_auc": 0.9979704804049282,
+    "confusion": {
+      "tn": 2883,
+      "fp": 152,
+      "fn": 25,
+      "tp": 3014
+    }
+  },
+  "n_params": 66955010,
+  "train_seconds": 929.549760202,
+  "latency_ms_per_review": 3.5867161614599277,
+  "notes": "preliminary: train_size=28343, epochs=3, max_len=128, lr=2e-05, device=cuda",
+  "extra": {
+    "val_metrics_last_epoch": {
+      "accuracy": 0.9713533091866974,
+      "precision": 0.9534662867996201,
+      "recall": 0.9911154985192497,
+      "macro_f1": 0.9713413652004849,
+      "roc_auc": 0.9979763893112763,
+      "confusion": {
+        "tn": 2888,
+        "fp": 147,
+        "fn": 27,
+        "tp": 3012
+      }
+    },
+    "args": {
+      "csv": "/content/DL_Project/Project Files/code/src/../../DataSet/fake_reviews_dataset.csv",
+      "model_name": "distilbert-base-uncased",
+      "train_size": 0,
+      "eval_size": 0,
+      "epochs": 3,
+      "batch_size": 32,
+      "max_len": 128,
+      "lr": 2e-05,
+      "seed": 42
+    }
+  }
+}
