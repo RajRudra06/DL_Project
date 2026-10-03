@@ -1,0 +1,305 @@
+{
+  "dataset": "Salminen et al. (2022) Fake Reviews Dataset",
+  "author": "Vedant Agarwal",
+  "class_balance": {
+    "raw": {
+      "total": 40526,
+      "cg_count": 20294,
+      "cg_pct": 50.07649410255145,
+      "or_count": 20232,
+      "or_pct": 49.92350589744855
+    },
+    "clean_deduplicated": {
+      "total": 40491,
+      "cg_count": 20260,
+      "cg_pct": 50.03581042700848,
+      "or_count": 20231,
+      "or_pct": 49.96418957299153
+    },
+    "train": {
+      "total": 28343,
+      "cg_count": 14182,
+      "cg_pct": 50.037046184243025,
+      "or_count": 14161,
+      "or_pct": 49.962953815756975
+    },
+    "val": {
+      "total": 6074,
+      "cg_count": 3039,
+      "cg_pct": 50.032927230819894,
+      "or_count": 3035,
+      "or_pct": 49.967072769180106
+    },
+    "test": {
+      "total": 6074,
+      "cg_count": 3039,
+      "cg_pct": 50.032927230819894,
+      "or_count": 3035,
+      "or_pct": 49.967072769180106
+    }
+  },
+  "review_length": {
+    "overall": {
+      "count": 40491,
+      "char_length": {
+        "mean": 351.59062507717766,
+        "std": 370.9668701852468,
+        "median": 198.0,
+        "min": 5,
+        "max": 2836,
+        "p25": 106.0,
+        "p75": 439.0,
+        "p95": 1213.0
+      },
+      "word_length": {
+        "mean": 67.37813341236324,
+        "std": 69.56475763665296,
+        "median": 38.0,
+        "min": 1,
+        "max": 373,
+        "p25": 21.0,
+        "p75": 85.0,
+        "p95": 234.0
+      }
+    },
+    "cg (computer-generated)": {
+      "count": 20260,
+      "char_length": {
+        "mean": 305.59121421520234,
+        "std": 307.57522093417725,
+        "median": 174.0,
+        "min": 5,
+        "max": 1717,
+        "p25": 95.0,
+        "p75": 382.0,
+        "p95": 1054.0
+      },
+      "word_length": {
+        "mean": 61.1713228035538,
+        "std": 61.77617091471912,
+        "median": 35.0,
+        "min": 1,
+        "max": 318,
+        "p25": 19.0,
+        "p75": 77.0,
+        "p95": 211.0
+      }
+    },
+    "or (original)": {
+      "count": 20231,
+      "char_length": {
+        "mean": 397.65597350600564,
+        "std": 420.0685418011614,
+        "median": 224.0,
+        "min": 28,
+        "max": 2836,
+        "p25": 121.0,
+        "p75": 498.0,
+        "p95": 1425.0
+      },
+      "word_length": {
+        "mean": 73.593841134892,
+        "std": 76.07038055287673,
+        "median": 42.0,
+        "min": 5,
+        "max": 373,
+        "p25": 23.0,
+        "p75": 93.0,
+        "p95": 260.5
+      }
+    }
+  },
+  "categories": [
+    {
+      "category": "Kindle_Store",
+      "total": 4727,
+      "cg_count": 2362,
+      "cg_pct": 49.97,
+      "or_count": 2365,
+      "or_pct": 50.03
+    },
+    {
+      "category": "Books",
+      "total": 4377,
+      "cg_count": 2190,
+      "cg_pct": 50.03,
+      "or_count": 2187,
+      "or_pct": 49.97
+    },
+    {
+      "category": "Pet_Supplies",
+      "total": 4251,
+      "cg_count": 2125,
+      "cg_pct": 49.99,
+      "or_count": 2126,
+      "or_pct": 50.01
+    },
+    {
+      "category": "Home_and_Kitchen",
+      "total": 4055,
+      "cg_count": 2027,
+      "cg_pct": 49.99,
+      "or_count": 2028,
+      "or_pct": 50.01
+    },
+    {
+      "category": "Electronics",
+      "total": 3997,
+      "cg_count": 2003,
+      "cg_pct": 50.11,
+      "or_count": 1994,
+      "or_pct": 49.89
+    },
+    {
+      "category": "Sports_and_Outdoors",
+      "total": 3943,
+      "cg_count": 1970,
+      "cg_pct": 49.96,
+      "or_count": 1973,
+      "or_pct": 50.04
+    },
+    {
+      "category": "Tools_and_Home_Improvement",
+      "total": 3857,
+      "cg_count": 1928,
+      "cg_pct": 49.99,
+      "or_count": 1929,
+      "or_pct": 50.01
+    },
+    {
+      "category": "Clothing_Shoes_and_Jewelry",
+      "total": 3845,
+      "cg_count": 1921,
+      "cg_pct": 49.96,
+      "or_count": 1924,
+      "or_pct": 50.04
+    },
+    {
+      "category": "Toys_and_Games",
+      "total": 3790,
+      "cg_count": 1893,
+      "cg_pct": 49.95,
+      "or_count": 1897,
+      "or_pct": 50.05
+    },
+    {
+      "category": "Movies_and_TV",
+      "total": 3585,
+      "cg_count": 1791,
+      "cg_pct": 49.96,
+      "or_count": 1794,
+      "or_pct": 50.04
+    },
+    {
+      "category": "Home Appliances",
+      "total": 10,
+      "cg_count": 8,
+      "cg_pct": 80.0,
+      "or_count": 2,
+      "or_pct": 20.0
+    },
+    {
+      "category": "Automotive",
+      "total": 8,
+      "cg_count": 6,
+      "cg_pct": 75.0,
+      "or_count": 2,
+      "or_pct": 25.0
+    },
+    {
+      "category": "Beauty",
+      "total": 8,
+      "cg_count": 6,
+      "cg_pct": 75.0,
+      "or_count": 2,
+      "or_pct": 25.0
+    },
+    {
+      "category": "Clothing",
+      "total": 8,
+      "cg_count": 6,
+      "cg_pct": 75.0,
+      "or_count": 2,
+      "or_pct": 25.0
+    },
+    {
+      "category": "Sporting Goods",
+      "total": 8,
+      "cg_count": 6,
+      "cg_pct": 75.0,
+      "or_count": 2,
+      "or_pct": 25.0
+    },
+    {
+      "category": "Food",
+      "total": 8,
+      "cg_count": 6,
+      "cg_pct": 75.0,
+      "or_count": 2,
+      "or_pct": 25.0
+    },
+    {
+      "category": "Toys",
+      "total": 8,
+      "cg_count": 6,
+      "cg_pct": 75.0,
+      "or_count": 2,
+      "or_pct": 25.0
+    },
+    {
+      "category": "Gardening",
+      "total": 6,
+      "cg_count": 6,
+      "cg_pct": 100.0,
+      "or_count": 0,
+      "or_pct": 0.0
+    }
+  ],
+  "ratings": {
+    "breakdown": [
+      {
+        "rating": 1.0,
+        "total": 2155,
+        "cg_count": 1063,
+        "cg_pct": 49.33,
+        "or_count": 1092,
+        "or_pct": 50.67
+      },
+      {
+        "rating": 2.0,
+        "total": 1978,
+        "cg_count": 970,
+        "cg_pct": 49.04,
+        "or_count": 1008,
+        "or_pct": 50.96
+      },
+      {
+        "rating": 3.0,
+        "total": 3806,
+        "cg_count": 1970,
+        "cg_pct": 51.76,
+        "or_count": 1836,
+        "or_pct": 48.24
+      },
+      {
+        "rating": 4.0,
+        "total": 7983,
+        "cg_count": 3935,
+        "cg_pct": 49.29,
+        "or_count": 4048,
+        "or_pct": 50.71
+      },
+      {
+        "rating": 5.0,
+        "total": 24569,
+        "cg_count": 12322,
+        "cg_pct": 50.15,
+        "or_count": 12247,
+        "or_pct": 49.85
+      }
+    ],
+    "mean_rating_overall": 4.255414783532143,
+    "mean_rating_cg": 4.257798617966436,
+    "mean_rating_or": 4.253027532005339
+  }
+}
