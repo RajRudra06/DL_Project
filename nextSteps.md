@@ -51,16 +51,16 @@ Then run `python src/compare.py` to see your row in the table.
 
 | Owner | Model | Exact name string | Script to create | Priority |
 |---|---|---|---|---|
-| Vedant Agarwal (230953312) | TF-IDF + MLP | `TF-IDF + MLP` | `src/tfidf_mlp_model.py` | URGENT, needed for Interim |
+| Vedant Agarwal (230953312) | TF-IDF + MLP | `TF-IDF + MLP` | `src/tfidf_mlp_model.py` | DONE |
 | Ishan Satyanand Thakur (230953356) | Text-CNN | `Text-CNN` | `src/textcnn_model.py` | DONE |
 | Vedant Totla (230911526) | BiLSTM + attention | `BiLSTM + Attention` | `src/bilstm_model.py` | after Interim, due 6 Oct |
 
 Interim (due 2 Oct) needs at least two models with results. DistilBERT is one. The TF-IDF+MLP and the Text-CNN are the second and third, so these two have to run today.
 
-### Vedant Agarwal - TF-IDF + MLP
-- TF-IDF word n-grams (1-2) and character n-grams (3-5) from sklearn, fit on `train` only, then a small multilayer perceptron (for example PyTorch, 2 hidden layers, dropout) or sklearn `MLPClassifier`.
-- Runs fine on a laptop CPU in minutes.
-- Also yours (shared responsibility): dataset acquisition notes and an exploratory analysis script `src/eda.py` (class balance, review length, category and rating counts). The literature review table draft is in `Project Files/report/literature_review_draft.md`; read it and check it against the papers.
+### Vedant Agarwal - TF-IDF + MLP (DONE)
+- ~~TF-IDF word n-grams (1-2) and character n-grams (3-5) from sklearn, fit on `train` only, then a small multilayer perceptron (for example PyTorch, 2 hidden layers, dropout) or sklearn `MLPClassifier`.~~
+- ~~Runs fine on a laptop CPU in minutes.~~
+- ~~Also yours (shared responsibility): dataset acquisition notes and an exploratory analysis script `src/eda.py` (class balance, review length, category and rating counts). The literature review table draft is in `Project Files/report/literature_review_draft.md`; read it and check it against the papers.~~
 
 ### Ishan Satyanand Thakur - Text-CNN (DONE)
 - ~~Trainable word embeddings, parallel convolution filters of widths 3, 4, 5 with max-over-time pooling, dropout, a linear output layer (Kim, 2014).~~
