@@ -1,0 +1,23 @@
+{
+  "model": "BiLSTM + Attention",
+  "owner": "Vedant Totla",
+  "split": "test",
+  "n_eval": 6074,
+  "metrics": {
+    "accuracy": 0.9555482383931512,
+    "precision": 0.9416267942583733,
+    "recall": 0.9713721618953604,
+    "macro_f1": 0.9555361864483705,
+    "roc_auc": 0.992028993756617,
+    "confusion": {
+      "tn": 2852,
+      "fp": 183,
+      "fn": 87,
+      "tp": 2952
+    }
+  },
+  "n_params": 4104706,
+  "train_seconds": 1125.6791723999777,
+  "latency_ms_per_review": 0.9516953126270286,
+  "notes": "epochs_run=10, device=cpu, emb_dim=128, hidden=128 (bi), dropout=0.5, lr=1e-3, batch=64, max_len=256, vocab=30000, best_val_f1=0.9597"
+}
