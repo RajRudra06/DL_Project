@@ -78,3 +78,49 @@ model = BiLSTMAttn(len(itos)).to(device)
 logit, w = model(xb.to(device))
 print(logit.shape, w.shape)
 print("params:", sum(p.numel() for p in model.parameters()))
+
+import copy
+import numpy as np
+from sklearn.metrics import f1_score
+
+torch.manual_seed(42)
+crit = nn.BCEWithLogitsLoss()
+opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+def predict_probs(dl):
+    model.eval()
+    out = []
+    with torch.no_grad():
+        for xb, _ in dl:
+            logit, _ = model(xb.to(device))
+            out.append(torch.sigmoid(logit).cpu().numpy())
+    return np.concatenate(out)
+
+EPOCHS, PATIENCE = 10, 2
+best_f1, best_state, bad = 0.0, None, 0
+y_val = val["label"].to_numpy()
+
+t0 = time.perf_counter()
+for ep in range(1, EPOCHS + 1):
+    model.train()
+    total = 0.0
+    for xb, yb in train_dl:
+        xb, yb = xb.to(device), yb.to(device)
+        opt.zero_grad()
+        logit, _ = model(xb)
+        loss = crit(logit, yb)
+        loss.backward()
+        nn.utils.clip_grad_norm_(model.parameters(), 5.0)
+        opt.step()
+        total += loss.item() * len(yb)
+    val_f1 = f1_score(y_val, predict_probs(val_dl) > 0.5)
+    print(f"epoch {ep}  train_loss {total/len(train):.4f}  val_f1 {val_f1:.4f}")
+    if val_f1 > best_f1:
+        best_f1, best_state, bad = val_f1, copy.deepcopy(model.state_dict()), 0
+    else:
+        bad += 1
+        if bad >= PATIENCE:
+            break
+train_seconds = time.perf_counter() - t0
+model.load_state_dict(best_state)
+print("best val F1:", best_f1, "train seconds:", train_seconds)
