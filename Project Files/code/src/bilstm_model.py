@@ -1,6 +1,8 @@
 import time
 import data
 import evaluate as E
+import pandas as pd
+import os
 
 train, val, test = data.load_splits()
 print(len(train), len(val), len(test))
@@ -124,3 +126,57 @@ for ep in range(1, EPOCHS + 1):
 train_seconds = time.perf_counter() - t0
 model.load_state_dict(best_state)
 print("best val F1:", best_f1, "train seconds:", train_seconds)
+
+import json
+
+# ---- final test evaluation (test data used once, for the final numbers) ----
+y_test = test["label"].to_numpy()
+y_prob = predict_probs(test_dl)
+
+def predict_texts(texts):
+    model.eval()
+    x = torch.tensor([encode(t) for t in texts], dtype=torch.long, device=device)
+    with torch.no_grad():
+        logit, _ = model(x)
+    return torch.sigmoid(logit).cpu().numpy()
+
+n_params = sum(p.numel() for p in model.parameters())
+latency = E.measure_latency(predict_texts, test["text"].tolist()[:64], repeats=3)
+
+res = E.evaluate_model(
+    "BiLSTM + Attention", "Vedant Totla", y_test, y_prob,
+    n_params, train_seconds, latency_ms=latency,
+    notes=(f"epochs_run={ep}, device={device}, emb_dim=128, hidden=128 (bi), "
+           f"dropout=0.5, lr=1e-3, batch=64, max_len={MAX_LEN}, vocab={len(itos)}, "
+           f"best_val_f1={best_f1:.4f}"))
+print(res["metrics"])
+
+os.makedirs(E.RESULTS_DIR, exist_ok=True)
+pd.DataFrame({"text": test["text"].to_numpy(), "label": y_test,
+              "prob_cg": y_prob}).to_csv(
+    os.path.join(E.RESULTS_DIR, "bilstm_attention_test_predictions.csv"), index=False)
+
+# ---- attention weights for the error analysis ----
+pred = (y_prob >= 0.5).astype(int)
+picks = []
+for true_label in (0, 1):
+    for correct in (True, False):
+        idx = np.where((y_test == true_label) & ((pred == true_label) == correct))[0][:3]
+        picks += [(int(i), correct) for i in idx]
+
+records = []
+model.eval()
+for i, correct in picks:
+    text = test["text"].iloc[i]
+    toks = tokenize(text)[:MAX_LEN]
+    x = torch.tensor([encode(text)], dtype=torch.long, device=device)
+    with torch.no_grad():
+        logit, w = model(x)
+    records.append({
+        "test_index": i, "label": int(y_test[i]), "correct": correct,
+        "prob_cg": torch.sigmoid(logit).item(),
+        "tokens": toks, "attention": w[0, :len(toks)].cpu().tolist()})
+
+with open(os.path.join(E.RESULTS_DIR, "bilstm_attention_weights.json"), "w") as f:
+    json.dump(records, f)
+print("saved", len(records), "attention examples")
