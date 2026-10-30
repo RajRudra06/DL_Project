@@ -12,16 +12,15 @@ families on one dataset, one split and one evaluation protocol.
 
 ## Layout
 - `src/evaluate.py` : common evaluation harness (shared by all models)
-- `src/data.py` : shared loader + the common 70/15/15 split (stand-in until preprocessing is final)
+- `src/data.py` : shared loader and the common 70/15/15 split used by every model
 - `src/` : model scripts, one per owner
 - `results/` : JSON metric files, one per model, produced by the harness
 - `data/` : optional local copy of the dataset (not tracked; see below)
 
 ## Data
 Download the Salminen et al. (2022) Fake Reviews Dataset
-(OSF: https://osf.io/tyue9/) and place the CSV in `data/`.
+(OSF: https://osf.io/tyue9/). The scripts read it from `../DataSet/fake_reviews_dataset.csv`.
 Labels in the Kaggle CSV are numeric: `1` = computer-generated (CG), `0` = original (OR).
-The CSV currently lives in `../DataSet/` (outside this folder); `src/data.py` reads it from there.
 
 ## Setup
     python3 -m venv .venv && source .venv/bin/activate
